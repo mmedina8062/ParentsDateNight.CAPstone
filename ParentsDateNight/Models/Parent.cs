@@ -22,7 +22,7 @@ namespace ParentsDateNight.Models
         public int StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        
+
         [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
 
@@ -36,7 +36,8 @@ namespace ParentsDateNight.Models
         [ForeignKey("Traveling Distance")]
         public int Miles { get; set; }
 
-        [ForeignKey("Sitters")]
-        public ICollection<Sitter> Sitters { get; set; }
+        //[ForeignKey("Sitters")]
+        //public ICollection<Sitter> Sitters { get; set; }
     }
+    
 }
