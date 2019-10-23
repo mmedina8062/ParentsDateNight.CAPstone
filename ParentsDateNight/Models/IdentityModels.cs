@@ -22,6 +22,7 @@ namespace ParentsDateNight.Models
     {
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Sitters> Sitters { get; set; }
+        public DbSet<Preference> Preferences { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
