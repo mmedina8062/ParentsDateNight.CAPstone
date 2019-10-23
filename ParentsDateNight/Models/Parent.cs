@@ -36,8 +36,8 @@ namespace ParentsDateNight.Models
         [ForeignKey("Traveling Distance")]
         public int Miles { get; set; }
 
-        //[ForeignKey("Sitters")]
-        //public ICollection<Sitter> Sitters { get; set; }
+        [ForeignKey("Sitters")]
+        public ICollection<Sitters> Sitters { get; set; }
     }
     
 }

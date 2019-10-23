@@ -20,7 +20,7 @@ namespace ParentsDateNight.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Parent> Parent { get; set; }
+        public DbSet<Parent> Parents { get; set; }
         public DbSet<Sitters> Sitters { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
