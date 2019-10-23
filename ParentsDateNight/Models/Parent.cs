@@ -14,7 +14,7 @@ namespace ParentsDateNight.Models
 
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
-
+        
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
@@ -38,6 +38,9 @@ namespace ParentsDateNight.Models
 
         [ForeignKey("Sitters")]
         public ICollection<Sitters> Sitters { get; set; }
+
+        [ForeignKey("Date night Ideas")]
+        public ICollection<Preference> Preferences { get; set; }
     }
     
 }

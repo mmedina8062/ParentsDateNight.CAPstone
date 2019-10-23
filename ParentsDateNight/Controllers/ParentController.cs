@@ -1,4 +1,5 @@
-﻿using ParentsDateNight.Models;
+﻿using Microsoft.AspNet.Identity;
+using ParentsDateNight.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,23 +26,32 @@ namespace ParentsDateNight.Controllers
         // GET: Parent/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var applicationId = User.Identity.GetUserId();
+            Parent parent = context.Parents.FirstOrDefault(p => p.ApplicationId == applicationId);
+
+            if (parent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(parent);
         }
 
         // GET: Parent/Create
         public ActionResult Create()
         {
-            return View();
+            Parent parent = new Parent();
+            return View(parent);
         }
 
         // POST: Parent/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Parent parent)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                parent.ApplicationId = User.Identity.GetUserId();
+                context.Parents.Add(parent);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -53,22 +63,34 @@ namespace ParentsDateNight.Controllers
         // GET: Parent/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Parent parent = context.Parents.Where(d => d.Id == id).SingleOrDefault();
+            
+            if (parent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(parent);
         }
 
         // POST: Parent/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Parent parent)
         {
             try
             {
-                // TODO: Add update logic here
-
+                Parent editParent = context.Parents.Find(id);
+                editParent.FirstName = parent.FirstName;
+                editParent.LastName = parent.LastName;
+                editParent.StreetAddress = parent.StreetAddress;
+                editParent.City = parent.City;
+                editParent.State = parent.State;
+                editParent.ZipCode = parent.ZipCode;
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(HttpNotFound());
             }
         }
 
