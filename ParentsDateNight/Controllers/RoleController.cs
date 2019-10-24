@@ -11,6 +11,11 @@ namespace ParentsDateNight.Controllers
 {
     public class RoleController : Controller
     {
+        ApplicationDbContext context;
+        public RoleController()
+        {
+            context = new ApplicationDbContext();
+        }
         // GET: Role
         public ActionResult Index()
         {
